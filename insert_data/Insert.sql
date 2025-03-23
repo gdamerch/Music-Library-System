@@ -1,20 +1,20 @@
-INSERT INTO Artist (AR_ArtistID, AR_Name, AR_Country) 
+INSERT INTO Artist (AR_ArtistID, AR_Name, AR_Country)
 VALUES
-  (201, '"Guns N'' Roses"', 'USA'),
-  (202, '"Michael Jackson"', 'USA'),
-  (203, '"John Lennon"', 'UK'),
-  (204, '"Queen"', 'UK'),
-  (205, '"Marvin Gaye"', 'USA'),
-  (206, '"The Eagles"', 'USA'),
-  (207, '"Stevie Wonder"', 'USA'),
-  (208, '"Led Zeppelin"', 'UK'),
-  (209, '"Aretha Franklin"', 'USA'),
-  (210, '"The Doors"', 'USA'),
-  (211, '"Taylor Swift"', 'USA'),
-  (212, '"The Weeknd"', 'Canada'),
-  (213, '"Imagine Dragons"', 'USA'),
-  (214, '"Linkin Park"', 'USA'),
-  (215, '"Alicia Keys"', 'USA');
+  (201, 'Guns N'' Roses', 'USA'),
+  (202, 'Michael Jackson', 'USA'),
+  (203, 'John Lennon', 'UK'),
+  (204, 'Queen', 'UK'),
+  (205, 'Marvin Gaye', 'USA'),
+  (206, 'Eagles', 'USA'),
+  (207, 'Stevie Wonder', 'USA'),
+  (208, 'Led Zeppelin', 'UK'),
+  (209, 'Aretha Franklin', 'USA'),
+  (210, 'The Doors', 'USA'),
+  (211, 'Taylor Swift', 'USA'),
+  (212, 'The Weeknd', 'Canada'),
+  (213, 'Imagine Dragons', 'USA'),
+  (214, 'Linkin Park', 'USA'),
+  (215, 'Alicia Keys', 'USA');
 
 INSERT INTO Album (A_AlbumID, A_Duration, A_NumberofSongs, A_ArtistID, A_ReleaseDate)
 VALUES
@@ -59,24 +59,24 @@ VALUES
 
 INSERT INTO Users (U_UID, U_Username, U_Email, U_Password) 
 VALUES
-  (1, '"starlord"', 'alice@example.com', 'passw123'),
-  (2, '"moonwalker"', 'bob@example.com', 'pwrd56799'),
-  (3, '"echo_beast"', 'charlie@example.com', 'abc1234'),
-  (4, '"nightowl"', 'diana@example.com', 'letmein123'),
-  (5, '"vinylvixen"', 'eve@example.com', '09876!!'),
-  (6, '"grooveguru"', 'frank@example.com', 'passwerd29394'),
-  (7, '"rythmryder1"', 'grace@example.com', '578799hfjalh '),
-  (8, '"bassline99"', 'heidi@example.com', '123!!!abc'),
-  (9, '"beatboxr0"', 'ivan@example.com', '098123word!'),
-  (10, '"synthw4ve"', 'judy@example.com', 'uoigrhi990!'),
-  (11, '"echo111"', 'emma@example.com', '12dhieh#'),
-  (12, '"stelo"', 'johnson@example.com', 'fs!oi321'),
-  (13, '"muziko"', 'sophia@example.com', 'fsn23jol'),
-  (14, '"brillanttt"', 'wilson@example.com', 'www1sh!'),
-  (15, '"lune"', 'isabella@example.com', 'thisispass1'),
-  (16, '"Andromeda"', 'thomas@example.com', 'test123!'),
-  (17, '"dream"', 'wendy@example.com', 'edi3y8ijdi'),
-  (18, '"name233"', 'lily@example.com', '102ue3h$');
+  (1, 'starlord', 'alice@example.com', 'passw123'),
+  (2, 'moonwalker', 'bob@example.com', 'pwrd56799'),
+  (3, 'echo_beast', 'charlie@example.com', 'abc1234'),
+  (4, 'nightowl', 'diana@example.com', 'letmein123'),
+  (5, 'vinylvixen', 'eve@example.com', '09876!!'),
+  (6, 'grooveguru', 'frank@example.com', 'passwerd29394'),
+  (7, 'rythmryder1', 'grace@example.com', '578799hfjalh'),
+  (8, 'bassline99', 'heidi@example.com', '123!!!abc'),
+  (9, 'beatboxr0', 'ivan@example.com', '098123word!'),
+  (10, 'synthw4ve', 'judy@example.com', 'uoigrhi990!'),
+  (11, 'echo111', 'emma@example.com', '12dhieh#'),
+  (12, 'stelo', 'johnson@example.com', 'fs!oi321'),
+  (13, 'muziko', 'sophia@example.com', 'fsn23jol'),
+  (14, 'brillanttt', 'wilson@example.com', 'www1sh!'),
+  (15, 'lune', 'isabella@example.com', 'thisispass1'),
+  (16, 'Andromeda', 'thomas@example.com', 'test123!'),
+  (17, 'dream', 'wendy@example.com', 'edi3y8ijdi'),
+  (18, 'name233', 'lily@example.com', '102ue3h$');
 
 INSERT INTO Playlist (P_PlaylistID, P_UID, P_Title, P_Private, P_CreationDate, P_Length)
 VALUES
