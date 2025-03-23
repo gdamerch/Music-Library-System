@@ -39,7 +39,7 @@ VALUES
   (19, 114, 214, 'Faint', 'Rock', '00:02:42'),
   (20, 115, 215, 'Diary', 'R&B', '00:04:44');
 
-INSERT INTO ALBUM (A_AlbumID, A_Duration, A_NumberSongs, A_ArtistID, A_ReleaseDate)
+INSERT INTO Album (A_AlbumID, A_Duration, A_NumberofSongs, A_ArtistID, A_ReleaseDate)
 VALUES
   (101, '0:42:30', 10, 201, '1987-05-15'),
   (102, '0:38:00', 9, 202, '1983-11-12'),
