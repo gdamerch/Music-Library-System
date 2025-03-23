@@ -78,7 +78,7 @@ VALUES
   (17, '"dream"', 'wendy@example.com', 'edi3y8ijdi'),
   (18, '"name233"', 'lily@example.com', '102ue3h$');
 
-INSERT INTO PLAYLIST (P_PlaylistID, P_Settings, P_Title, P_Private, P_CreationDate, P_Length)
+INSERT INTO Playlist (P_PlaylistID, P_UID, P_Title, P_Private, P_CreationDate, P_Length)
 VALUES
   (1001, 1, 'Rock Legends', TRUE, '2020-01-15', 150),
   (1002, 2, 'Mix', FALSE, '2024-02-20', 100),
