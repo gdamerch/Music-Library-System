@@ -57,6 +57,27 @@ VALUES
   (114, '0:36:21', 13, 214, '2003-03-25'),
   (115, '0:57:27', 15, 215, '2003-12-02');
 
+INSERT INTO Users (U_UID, U_Username, U_Email, U_Password) 
+VALUES
+  (1, '"starlord"', 'alice@example.com', 'passw123'),
+  (2, '"moonwalker"', 'bob@example.com', 'pwrd56799'),
+  (3, '"echo_beast"', 'charlie@example.com', 'abc1234'),
+  (4, '"nightowl"', 'diana@example.com', 'letmein123'),
+  (5, '"vinylvixen"', 'eve@example.com', '09876!!'),
+  (6, '"grooveguru"', 'frank@example.com', 'passwerd29394'),
+  (7, '"rythmryder1"', 'grace@example.com', '578799hfjalh '),
+  (8, '"bassline99"', 'heidi@example.com', '123!!!abc'),
+  (9, '"beatboxr0"', 'ivan@example.com', '098123word!'),
+  (10, '"synthw4ve"', 'judy@example.com', 'uoigrhi990!'),
+  (11, '"echo111"', 'emma@example.com', '12dhieh#'),
+  (12, '"stelo"', 'johnson@example.com', 'fs!oi321'),
+  (13, '"muziko"', 'sophia@example.com', 'fsn23jol'),
+  (14, '"brillanttt"', 'wilson@example.com', 'www1sh!'),
+  (15, '"lune"', 'isabella@example.com', 'thisispass1'),
+  (16, '"Andromeda"', 'thomas@example.com', 'test123!'),
+  (17, '"dream"', 'wendy@example.com', 'edi3y8ijdi'),
+  (18, '"name233"', 'lily@example.com', '102ue3h$');
+
 INSERT INTO PLAYLIST (P_PlaylistID, P_Settings, P_Title, P_Private, P_CreationDate, P_Length)
 VALUES
   (1001, 1, 'Rock Legends', TRUE, '2020-01-15', 150),
