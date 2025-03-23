@@ -1,3 +1,21 @@
+INSERT INTO Artist (AR_ArtistID, AR_Name, AR_Country) 
+VALUES
+  (201, '"Guns N'' Roses"', 'USA'),
+  (202, '"Michael Jackson"', 'USA'),
+  (203, '"John Lennon"', 'UK'),
+  (204, '"Queen"', 'UK'),
+  (205, '"Marvin Gaye"', 'USA'),
+  (206, '"The Eagles"', 'USA'),
+  (207, '"Stevie Wonder"', 'USA'),
+  (208, '"Led Zeppelin"', 'UK'),
+  (209, '"Aretha Franklin"', 'USA'),
+  (210, '"The Doors"', 'USA'),
+  (211, '"Taylor Swift"', 'USA'),
+  (212, '"The Weeknd"', 'Canada'),
+  (213, '"Imagine Dragons"', 'USA'),
+  (214, '"Linkin Park"', 'USA'),
+  (215, '"Alicia Keys"', 'USA');
+
 INSERT INTO SONG (S_SONGID, S_ALBUMID, S_ARTISTID, S_TITLE, S_GENRE, S_DURATION)
 VALUES
   (1, 101, 201, 'Sweet Child O'' Mine', 'Rock', '00:05:56'),
@@ -61,4 +79,3 @@ VALUES
   (1018, 16, 'R&B Love', FALSE, '2020-03-31', 78),
   (1019, 17, 'Jazz', TRUE, '2025-02-03', 100),
   (1020, 18, 'Electronic', FALSE, '2025-04-09', 87);
-
