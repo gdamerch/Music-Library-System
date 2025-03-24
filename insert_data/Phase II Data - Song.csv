@@ -1,20 +1,21 @@
-1,101,"""Sweet Child O' Mine""",201,"""Rock""",00:05:56
-2,102,"""Billie Jean""",202,"""Pop""",00:04:54
-3,103,"""Imagine""",203,"""Rock""",00:03:03
-4,104,"""Bohemian Rhapsody""",204,"""Rock""",00:05:55
-5,105,"""What's Going On""",205,"""Soul""",00:03:53
-6,106,"""Hotel California""",206,"""Rock""",00:06:30
-7,107,"""Superstition""",207,"""Funk""",00:04:26
-8,108,"""Stairway to Heaven""",208,"""Rock""",00:08:02
-9,109,"""Respect""",209,"""R&B""",00:02:29
-10,110,"""Light My Fire""",210,"""Rock""",00:07:06
-11,111,"""Love Story""",211,"""Pop""",00:03:55
-12,111,"""You Belong With Me""",211,"""Pop""",00:03:51
-13,112,"""Blinding Lights""",212,"""Pop""",00:03:22
-14,112,"""Save Your Tears""",212,"""Pop""",00:03:36
-15,113,"""Radioactive""",213,"""Rock""",00:03:07
-16,113,"""Demons""",213,"""Rock""",00:02:58
-17,114,"""Numb""",214,"""Rock""",00:03:06
-18,114,"""Somewhere I Belong""",214,"""Rock""",00:03:33
-19,114,"""Faint""",214,"""Rock""",00:02:42
-20,115,"""Diary""",215,"""R&B""",00:04:44
+S_SongID,S_AlbumID,S_ArtistID,S_Title,S_Genre,S_Duration
+1,101,201,Sweet Child O' Mine,Rock,00:05:56
+2,102,202,Billie Jean,Pop,00:04:54
+3,103,203,Imagine,Rock,00:03:03
+4,104,204,Bohemian Rhapsody,Rock,00:05:55
+5,105,205,What's Going On,Soul,00:03:53
+6,106,206,Hotel California,Rock,00:06:30
+7,107,207,Superstition,Funk,00:04:26
+8,108,208,Stairway to Heaven,Rock,00:08:02
+9,109,209,Respect,R&B,00:02:29
+10,110,210,Light My Fire,Rock,00:07:06
+11,111,211,Love Story,Pop,00:03:55
+12,111,211,You Belong With Me,Pop,00:03:51
+13,112,212,Blinding Lights,Pop,00:03:22
+14,112,212,Save Your Tears,Pop,00:03:36
+15,113,213,Radioactive,Rock,00:03:07
+16,113,213,Demons,Rock,00:02:58
+17,114,214,Numb,Rock,00:03:06
+18,114,214,Somewhere I Belong,Rock,00:03:33
+19,114,214,"""Fain",Rock,00:02:42
+20,115,215,Diary,R&B,00:04:44

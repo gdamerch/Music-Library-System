@@ -1,3 +1,4 @@
+P_PlaylistID,P_UID,P_Title,P_Private,P_CreationDate,P_Length
 1001,1,Rock Legends,TRUE,2020-01-15,150
 1002,2,Mix,FALSE,2024-02-20,100
 1003,3,Vibes,TRUE,2019-03-10,230

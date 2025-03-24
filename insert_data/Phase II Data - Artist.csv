@@ -1,15 +1,16 @@
-201,"""Guns N' Roses""",USA
-202,"""Michael Jackson""",USA
-203,"""John Lennon""",UK
-204,"""Queen""",UK
-205,"""Marvin Gaye""",USA
-206,"""The Eagles""",USA
-207,"""Stevie Wonder""",USA
-208,"""Led Zeppelin""",UK
-209,"""Aretha Franklin""",USA
-210,"""The Doors""",USA
-211,"""Taylor Swift""",USA
-212,"""The Weeknd""",Canada
-213,"""Imagine Dragons""",USA
-214,"""Linkin Park""",USA
-215,"""Alicia Keys""",USA
+AR_ArtistID,AR_Name,AR_Country
+201,Guns N' Roses,USA
+202,Michael Jackson,USA
+203,John Lennon,UK
+204,Queen,UK
+205,Marvin Gaye,USA
+206,The Eagles,USA
+207,Stevie Wonder,USA
+208,Led Zeppelin,UK
+209,Aretha Franklin,USA
+210,The Doors,USA
+211,Taylor Swift,USA
+212,The Weeknd,Canada
+213,Imagine Dragons,USA
+214,Linkin Park,USA
+215,Alicia Keys,USA
