@@ -25,6 +25,7 @@ CREATE TABLE USERS (
 
 CREATE TABLE ALBUM (
     A_ALBUMID INTEGER NOT NULL,         -- ID of the album
+    A_ALBUMNAME VARCHAR(999),           -- Name of the album
     A_ARTISTID INTEGER NOT NULL,        -- ID of the artist who made the album
     A_NUMBEROFSONGS INTEGER NOT NULL,   -- Number of songs in album
     A_RELEASEDATE DATE,                 -- Date album was released
