@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import psycopg2
 
 # Create a Flask application and specify the template folder path
@@ -9,10 +9,10 @@ app.secret_key = "this_is_a_key"  # Needed for session usage
 def get_connection():
     return psycopg2.connect(
         host="localhost",
-        port="?",
-        database="?",
-        user="?",
-        password="?"
+        port="8888",
+        database="project_demo",
+        user="joeyb",
+        password="3861"
     )
 
 # Login page is the start page
@@ -150,6 +150,109 @@ def add_to_playlist():
     conn.close()
     # Return home
     return redirect(url_for("home", message=message))
+
+# look up user id from session 
+def get_current_user_id():
+    username = session.get("username")
+    if not username:
+        return None
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT u_uid FROM users WHERE u_username = %s", (username,))
+    row = cur.fetchone()
+    cur.close()
+    conn.close()
+    return row[0] if row else None
+
+@app.route("/playlist", methods=["GET"])
+def playlist_index():
+    user_id = get_current_user_id()
+    if user_id is None:
+        return redirect(url_for("login"))
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT p_playlistid, p_title, p_creationdate FROM playlist WHERE p_uid = %s",
+                (user_id,))
+    raw = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    playlists = [
+        {"id": row[0], "title": row[1], "creation_date": row[2]}
+        for row in raw
+    ]
+    return render_template("playlists.html", playlists=playlists)
+
+@app.route("/playlist/<int:pid>", methods=["GET"])
+def playlist_detail(pid):
+    user_id = get_current_user_id()
+    if user_id is None:
+        return redirect(url_for("login"))
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    # Fetch playlist metadata (optionally verify p_uid= user_id)
+    cur.execute("SELECT p_title FROM playlist WHERE p_playlistid = %s AND p_uid = %s",
+                (pid, user_id))
+    p = cur.fetchone()
+    if not p:
+        cur.close()
+        conn.close()
+        flash("Playlist not found.", "danger")
+        return redirect(url_for("playlist_index"))
+    playlist = {"id": pid, "title": p[0]}
+
+    # Fetch the songs currently in this playlist
+    cur.execute("""
+      SELECT S.S_SongID, S.S_Title, AR.AR_Name, AL.A_Name, S.S_Duration
+      FROM playlistsong PS
+      JOIN song S     ON PS.ps_songid   = S.S_SongID
+      JOIN artist AR  ON S.S_ArtistID   = AR.AR_ArtistID
+      JOIN album AL   ON S.S_AlbumID    = AL.A_AlbumID
+      WHERE PS.ps_playlistid = %s
+    """, (pid,))
+    songs = [
+      {"id": r[0], "title": r[1], "artist_name": r[2], "album_name": r[3], "duration": r[4]}
+      for r in cur.fetchall()
+    ]
+
+    # Fetch all songs for the “Add a Song” dropdown
+    cur.execute("""
+      SELECT S.S_SongID, S.S_Title, AR.AR_Name
+      FROM song S
+      JOIN artist AR ON S.S_ArtistID = AR.AR_ArtistID
+      ORDER BY S.S_Title
+    """)
+    all_songs = [
+      {"id": r[0], "title": r[1], "artist_name": r[2]}
+      for r in cur.fetchall()
+    ]
+
+    cur.close()
+    conn.close()
+    return render_template("playlist_detail.html",
+                           playlist=playlist,
+                           songs=songs,
+                           all_songs=all_songs)
+
+# remove a song from a playlist
+@app.route("/playlist/<int:pid>/remove/<int:sid>", methods=["POST"])
+def remove_song(pid, sid):
+    user_id = get_current_user_id()
+    if user_id is None:
+        return redirect(url_for("login"))
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("""
+      DELETE FROM playlistsong
+      WHERE ps_playlistid = %s AND ps_songid = %s
+    """, (pid, sid))
+    conn.commit()
+    cur.close()
+    conn.close()
+    flash("Song removed.", "info")
+    return redirect(url_for("playlist_detail", pid=pid))
 
 # Start the Flask application
 if __name__ == "__main__":
