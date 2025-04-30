@@ -100,3 +100,13 @@ VALUES
   (1018, 16, 'R&B Love', FALSE, '2020-03-31', 78),
   (1019, 17, 'Jazz', TRUE, '2025-02-03', 100),
   (1020, 18, 'Electronic', FALSE, '2025-04-09', 87);
+
+-- Insert into PLAYLISTSONG
+INSERT INTO PLAYLISTSONG (PS_PlaylistID, PS_SongID) VALUES
+  (1001, 1),
+  (1001, 4),
+  (1001, 5),
+  (1001, 17),
+  (1002, 1),
+  (1002, 3),
+  (1002, 13);

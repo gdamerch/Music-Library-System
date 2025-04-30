@@ -36,3 +36,8 @@ CREATE TABLE ARTIST (
     AR_NAME VARCHAR(99) NOT NULL,       -- Name of the artist
     AR_COUNTRY VARCHAR(99) NOT NULL     -- Artist's country of origin
 );
+
+CREATE TABLE PLAYLISTSONG (
+  PS_PlaylistID INT,                    -- Playlist's ID
+  PS_SongID INT                         -- Song's ID
+);
