@@ -148,8 +148,13 @@ def add_to_playlist():
         message = "Song already exists in playlist."
     cur.close()
     conn.close()
-    # Return home
-    return redirect(url_for("home", message=message))
+    if "from_playlist" in request.form:
+    # re-fetch the updated playlist data and render the page again
+        pid = request.form["playlist_id"]
+        return redirect(url_for("playlist_detail", pid=pid))
+    else:
+        return redirect(url_for("home", message=message))
+
 
 # Home - edit username
 @app.route("/update_username", methods=["POST"])
@@ -289,6 +294,27 @@ def remove_song(pid, sid):
     conn.close()
     flash("Song removed.", "info")
     return redirect(url_for("playlist_detail", pid=pid))
+
+@app.route("/playlist/<int:pid>/delete", methods=["POST"])
+def delete_playlist(pid):
+    user_id = get_current_user_id()
+    if user_id is None:
+        return redirect(url_for("login"))
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    # Delete all songs in the playlist first
+    cur.execute("DELETE FROM playlistsong WHERE ps_playlistid = %s", (pid,))
+    # Then delete the playlist itself
+    cur.execute("DELETE FROM playlist WHERE p_playlistid = %s AND p_uid = %s", (pid, user_id))
+
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    flash("Playlist deleted.", "info")
+    return redirect(url_for("playlist_index"))
 
 # Start the Flask application
 if __name__ == "__main__":
