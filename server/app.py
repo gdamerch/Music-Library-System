@@ -102,14 +102,14 @@ def home():
     if keyword:
         search = f"%{keyword}%"
         cur.execute("""
-            SELECT S.S_Title, AR.AR_Name, AL.A_AlbumID, S.S_Genre, S.S_Duration, S.S_SongID
+            SELECT S.S_Title, AR.AR_Name, AL.A_AlbumName, S.S_Genre, S.S_Duration, S.S_SongID
             FROM Song AS S
             JOIN Artist AS AR ON S.S_ArtistID = AR.AR_ArtistID
             JOIN Album AS AL ON S.S_AlbumID = AL.A_AlbumID
             WHERE S.S_Title ILIKE %s
                OR AR.AR_Name ILIKE %s
                OR S.S_Genre ILIKE %s
-               OR CAST(S.S_AlbumID AS TEXT) ILIKE %s
+               OR Al.A_AlbumName ILIKE %s
         """, (search, search, search, search))
         results = cur.fetchall()
     cur.close()
