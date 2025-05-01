@@ -51,6 +51,19 @@
     .plus-btn:hover {
       color: #14bc02;
     }
+    .edit-btn {
+      background: #04ae34;
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-left: 10px;
+    }
+    .edit-btn:hover {
+      background: #e1bf15;
+      color: white;
+    }
   </style>
 </head>
 
@@ -59,9 +72,14 @@
     <!-- Welcome message -->
     <h5 class="mb-2 text-center">
       Hello, <span class="username">{{ username }}</span>
+      <button class="edit-btn" data-bs-toggle="modal" data-bs-target="#editUsernameModal">Edit</button>
     </h5>
     <!-- Title -->
     <h2 class="text-center mb-4">Welcome to Music Library</h2>
+    <!-- Display message -->
+    {% if message %}
+      <p class="text-center mt-3" style="color: #e73cb1;">{{ message }}</p>
+    {% endif %}
     <!-- Search form -->
     <form method="GET" class="d-flex justify-content-center mb-4">
       <input type="text" name="keyword" class="form-control w-50 me-2"
@@ -101,13 +119,9 @@
     {% elif keyword %}
       <p class="text-center text-muted">No results found for "{{ keyword }}"</p>
     {% endif %}
-    <!-- Display message -->
-    {% if message %}
-      <p class="text-center mt-3" style="color: #e73cb1;">{{ message }}</p>
-    {% endif %}
   </div>
   <!-- Go to playlist page -->
-  <a href="/playlist" class="btn btn-play" style="bottom: 30px; right: 30px; z-index: 1000;">
+  <a href="/playlist" class="btn btn-play">
     Go to Playlist
   </a>
   <!-- Select playlist and confirm adding song -->
@@ -135,7 +149,27 @@
       </div>
     </div>
   </div>
-  <!-- JavaScript to pass song id into modal hidden field -->
+  <!-- Modal for editing username -->
+  <div class="modal fade" id="editUsernameModal" tabindex="-1" aria-labelledby="editUsernameModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form method="POST" action="/update_username">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editUsernameModalLabel">Change Username</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <label for="new_username" class="form-label">New Username</label>
+            <input type="text" class="form-control" name="new_username" id="new_username" required>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Pass song id into modal hidden field -->
   <script>
     const addModal = document.getElementById('addModal');
     addModal.addEventListener('show.bs.modal', function (event) {

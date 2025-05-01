@@ -9,10 +9,10 @@ app.secret_key = "this_is_a_key"  # Needed for session usage
 def get_connection():
     return psycopg2.connect(
         host="localhost",
-        port="8888",
-        database="project_demo",
-        user="joeyb",
-        password="3861"
+        port="?",
+        database="?",
+        user="?",
+        password="?"
     )
 
 # Login page is the start page
@@ -120,7 +120,7 @@ def home():
                            username=username,
                            playlists=playlists,
                            message=message)
-
+# Home - add song
 @app.route("/add_to_playlist", methods=["POST"])
 def add_to_playlist():
     playlist_id = request.form["playlist_id"]
@@ -143,13 +143,44 @@ def add_to_playlist():
             VALUES (%s, %s)
         """, (playlist_id, song_id))
         conn.commit()
-        message = "Song added to playlist"
+        message = "Song added successfully!"
     else:
-        message = "Song already exists in playlist"
+        message = "Song already exists in playlist."
     cur.close()
     conn.close()
     # Return home
     return redirect(url_for("home", message=message))
+
+# Home - edit username
+@app.route("/update_username", methods=["POST"])
+def update_username():
+    new_username = request.form.get("new_username").strip()
+    current_username = session.get("username")
+    # Not logged in
+    if not current_username:
+        return redirect(url_for("login"))
+    # Empty input
+    if not new_username:
+        return redirect(url_for("home", message="Username cannot be empty."))
+    conn = get_connection()
+    cur = conn.cursor()
+    # Check if the new username already exists
+    cur.execute("SELECT 1 FROM users WHERE u_username = %s", (new_username,))
+    if cur.fetchone():
+        cur.close()
+        conn.close()
+        return redirect(url_for("home", message="Username already exists. Please choose another."))
+    # Update username in the database
+    cur.execute(
+        "UPDATE users SET u_username = %s WHERE u_username = %s",
+        (new_username, current_username)
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    # Update session
+    session["username"] = new_username
+    return redirect(url_for("home", message="Username updated successfully!"))
 
 # look up user id from session 
 def get_current_user_id():
