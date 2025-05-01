@@ -316,6 +316,32 @@ def delete_playlist(pid):
     flash("Playlist deleted.", "info")
     return redirect(url_for("playlist_index"))
 
+@app.route("/create_playlist", methods=["POST"])
+def create_playlist():
+    title = request.form["title"].strip()
+    user_id = get_current_user_id()
+    if not title or user_id is None:
+        return redirect(url_for("playlist_index"))
+
+    conn = get_connection()
+    cur = conn.cursor()
+
+    # Get max ID first
+    cur.execute("SELECT MAX(p_playlistid) FROM playlist")
+    max_id = cur.fetchone()[0] or 0
+    next_id = max_id + 1
+
+    # Insert using that ID
+    cur.execute("""
+    INSERT INTO playlist (p_playlistid, p_uid, p_title, p_creationdate, p_private, p_length)
+    VALUES (%s, %s, %s, CURRENT_DATE, FALSE, 0)
+""", (next_id, user_id, title))
+
+    conn.commit()
+    cur.close()
+    conn.close()
+    return redirect(url_for("playlist_index"))
+
 # Start the Flask application
 if __name__ == "__main__":
     app.run(debug=True)
