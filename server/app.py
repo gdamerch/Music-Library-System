@@ -9,10 +9,10 @@ app.secret_key = "this_is_a_key"  # Needed for session usage
 def get_connection():
     return psycopg2.connect(
         host="localhost",
-        port="?",
-        database="?",
-        user="?",
-        password="?"
+        port="8888",
+        database="project_demo",
+        user="joeyb",
+        password="3861"
     )
 
 # Login page is the start page
