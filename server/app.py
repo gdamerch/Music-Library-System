@@ -192,7 +192,7 @@ def playlist_detail(pid):
     conn = get_connection()
     cur = conn.cursor()
 
-    # Fetch playlist metadata (optionally verify p_uid= user_id)
+    # Fetch playlist info
     cur.execute("SELECT p_title FROM playlist WHERE p_playlistid = %s AND p_uid = %s",
                 (pid, user_id))
     p = cur.fetchone()
@@ -203,21 +203,26 @@ def playlist_detail(pid):
         return redirect(url_for("playlist_index"))
     playlist = {"id": pid, "title": p[0]}
 
-    # Fetch the songs currently in this playlist
+    # Fetch the songs currently in playlist
     cur.execute("""
-      SELECT S.S_SongID, S.S_Title, AR.AR_Name, AL.A_Name, S.S_Duration
-      FROM playlistsong PS
-      JOIN song S     ON PS.ps_songid   = S.S_SongID
-      JOIN artist AR  ON S.S_ArtistID   = AR.AR_ArtistID
-      JOIN album AL   ON S.S_AlbumID    = AL.A_AlbumID
-      WHERE PS.ps_playlistid = %s
+        SELECT S.S_SongID, S.S_Title, AR.AR_Name, AL.A_AlbumName, S.S_Duration
+        FROM playlistsong PS
+        JOIN song   S  ON PS.ps_songid   = S.S_SongID
+        JOIN artist AR ON S.S_ArtistID   = AR.AR_ArtistID
+        JOIN album  AL ON S.S_AlbumID    = AL.A_AlbumID
+        WHERE PS.ps_playlistid = %s
     """, (pid,))
+
     songs = [
-      {"id": r[0], "title": r[1], "artist_name": r[2], "album_name": r[3], "duration": r[4]}
-      for r in cur.fetchall()
+        {"id":   r[0],
+        "title": r[1],
+        "artist_name": r[2],
+        "album_name":  r[3],
+        "duration":    r[4]}
+        for r in cur.fetchall()
     ]
 
-    # Fetch all songs for the “Add a Song” dropdown
+    # Fetch songs for the add dropdown
     cur.execute("""
       SELECT S.S_SongID, S.S_Title, AR.AR_Name
       FROM song S
