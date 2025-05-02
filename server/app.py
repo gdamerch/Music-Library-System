@@ -6,13 +6,14 @@ app = Flask(__name__, template_folder="../templates")
 app.secret_key = "this_is_a_key"  # Needed for session usage
 
 # Database connection
+# Make sure host, port, database, user, password are correct for you local setup
 def get_connection():
     return psycopg2.connect(
         host="localhost",
-        port="8888",
-        database="project_demo",
-        user="joeyb",
-        password="3861"
+        port="5432",
+        database="cse412_project",
+        user="postgres",
+        password="cse412"
     )
 
 # Login page is the start page
@@ -341,6 +342,33 @@ def create_playlist():
     cur.close()
     conn.close()
     return redirect(url_for("playlist_index"))
+
+@app.route("/search_user_playlist", methods=["GET"])
+def search_user_playlist():
+    # Get keyword
+    keyword = request.args.get("keyword", "").strip()
+    results = []
+    # Retrieve the currently username from the session
+    username = session.get("username", "Guest")
+    message = request.args.get("message", "")
+    conn = get_connection()
+    cur = conn.cursor()
+    # Search keyword
+    if keyword:
+        search = f"%{keyword}%"
+        cur.execute("""
+            SELECT U.U_Username, P.P_Title
+            FROM Playlist AS P
+            JOIN Users AS U ON P.P_UID = U.U_UID
+            WHERE P.P_Private = False AND (P.P_Title ILIKE %s OR U.U_Username ILIKE %s)
+        """, (search, search));
+        results = cur.fetchall()
+    cur.close()
+    conn.close()
+    return render_template("search_user_playlist.html",
+                           results=results,
+                           keyword=keyword,
+                           message=message)
 
 # Start the Flask application
 if __name__ == "__main__":

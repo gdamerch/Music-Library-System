@@ -39,6 +39,6 @@ CREATE TABLE ARTIST (
 );
 
 CREATE TABLE PLAYLISTSONG (
-  PS_PlaylistID INT,                    -- Playlist's ID
-  PS_SongID INT                         -- Song's ID
+    PS_PlaylistID INT,                  -- Playlist's ID
+    PS_SongID INT                       -- Song's ID
 );
