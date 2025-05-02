@@ -208,14 +208,14 @@ def playlist_index():
         return redirect(url_for("login"))
     conn = get_connection()
     cur = conn.cursor()
-    cur.execute("SELECT p_playlistid, p_title, p_creationdate FROM playlist WHERE p_uid = %s",
+    cur.execute("SELECT p_playlistid, p_title, p_creationdate, p_private FROM playlist WHERE p_uid = %s",
                 (user_id,))
     raw = cur.fetchall()
     cur.close()
     conn.close()
 
     playlists = [
-        {"id": row[0], "title": row[1], "creation_date": row[2]}
+        {"id": row[0], "title": row[1], "creation_date": row[2], "private": row[3]}
         for row in raw
     ]
     return render_template("playlists.html", playlists=playlists)

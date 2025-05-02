@@ -54,6 +54,7 @@
             <th>Playlist ID</th>
             <th>Title</th>
             <th>Created On</th>
+            <th>Private?</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -63,6 +64,7 @@
             <td>{{ pl.id }}</td>
             <td>{{ pl.title }}</td>
             <td>{{ pl.creation_date }}</td>
+            <td>{{ pl.private }}</td>
             <td>
               <a
                 href="{{ url_for('playlist_detail', pid=pl.id) }}"
